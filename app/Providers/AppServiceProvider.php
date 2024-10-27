@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use zahidhassanshaikot\Settings\Facades\Settings;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Cache;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,25 +25,47 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->loadAndSetSettings();
+    }
+
+    private function loadAndSetSettings(): void
+    {
         try {
-            Schema::defaultStringLength(191);
-            $settings =Settings::all([
-                'key', 'value'
-            ])->keyBy('key')
+            $settings = $this->getCachedSettings();
+            $this->setConfigSettings($settings);
+            $this->setAppTimezone($settings);
+        } catch (\Exception $exception) {
+            $this->logException($exception);
+        }
+    }
+
+    private function getCachedSettings(): array
+    {
+        return Cache::rememberForever('system_settings', function () {
+            return Settings::all()->keyBy('key')
                 ->transform(function ($setting) {
                     return $setting->value;
                 })
                 ->toArray();
+        });
+    }
+
+    private function setConfigSettings(array $settings): void
+    {
+        Config::set('settings', $settings);
+    }
+
+    private function setAppTimezone(array $settings): void
+    {
+        if (isset($settings['timezone'])) {
             config([
-                'settings' => $settings
+                'app.timezone' => $settings['timezone']
             ]);
-            if(config('settings.timezone') != null){
-                config([
-                    'app.timezone' => config('settings.timezone')
-                ]);
-            }
-        }catch (\Exception $exception){
-            Log::debug('App service provider boot method config error: =>'.$exception->getMessage());
         }
+    }
+
+    private function logException(\Exception $exception): void
+    {
+        Log::debug('App service provider boot method config error: ' . $exception->getMessage());
     }
 }
