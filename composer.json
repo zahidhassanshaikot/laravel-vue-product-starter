@@ -9,9 +9,14 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "maatwebsite/excel": "^3.1",
+        "spatie/laravel-permission": "^5.7",
+        "yajra/laravel-datatables": "9.0",
+        "zahidhassanshaikot/settings": "^1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.7",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
@@ -30,7 +35,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/Helper/helper.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

@@ -1,0 +1,223 @@
+/*image uploader preview*/
+.upload-preview img {
+    height: 80px;
+    width: 80px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.hdn-uploder {
+    display: none !important;
+}
+
+/*phone number input field*/
+.iti{
+    display: block!important;
+}
+
+/*
+Start jquery datatable style
+*/
+.dataTables_wrapper .dt-buttons a.dt-button {
+    background-color: #607d8b;
+    color: #fff;
+    padding: 7px 12px;
+    margin-right: 5px;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.16),0 2px 10px rgba(0,0,0,0.12);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    border: 0;
+    font-size: 13px;
+    outline: 0;
+}
+div.dt-buttons {
+    margin-bottom: 10px;
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    margin-top: 4px;
+}
+button.dt-button, div.dt-button, a.dt-button {
+    background-image: none !important;
+}
+.buttons-csv {
+    background-color: #2ab9d0 !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px rgba(233,30,99,0.6);
+    color: #fff !important;
+    border-radius: 30px !important;
+    border: 0 !important;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+}
+.buttons-create {
+    background-color: #2ab9d0 !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px rgb(42, 184, 207);
+    color: #fff !important;
+    border-radius: 30px !important;
+    border: 0 !important;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+    padding: 0px !important;
+}
+.buttons-excel {
+    background-color: #59bf70 !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px rgba(233,30,99,0.6);
+    color: #fff !important;
+    border-radius: 30px !important;
+    border: 0 !important;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+}
+.buttons-reload {
+    background-color: #59bf70 !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px rgb(89, 190, 112);
+    color: #fff !important;
+    border-radius: 30px !important;
+    border: 0 !important;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+    padding: 0px !important;
+}
+.buttons-export {
+    background-color: #000000 !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px rgba(0, 0, 0, 0.6);
+    color: #fff !important;
+    border-radius: 30px !important;
+    border: 0 !important;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+    padding: 0px !important;
+}
+
+.buttons-pdf {
+    background-color: #e91e63 !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px rgba(233,30,99,0.6);
+    color: #fff !important;
+    border-radius: 30px !important;
+    border: 0 !important;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.buttons-reset {
+    background-color: #e91e63 !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px rgba(233,30,99,0.6);
+    color: #fff !important;
+    border-radius: 30px !important;
+    border: 0 !important;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+    padding: 0px !important;
+}
+
+.buttons-print {
+    background-color: #6563ef !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px #6563ef;
+    color: #fff !important;
+    border-radius: 30px !important;
+    border: 0 !important;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+}
+
+/*
+End jquery datatable style
+*/
+.ic-margin-right-5 {
+    margin-right: 5px;
+}
+.ic-custom-action .waves-circle{
+    line-height: 1.5em!important;
+}
+.ic-custom-action a {
+    margin-right: 5px;
+}
+.ic-custom-action {
+    margin-top: -44px!important;
+    text-align: center;
+}
+
+.ic-list-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+table.dataTable {
+    width: 100% !important;
+}
+.table-responsive {
+    width: 100% !important;
+}
+.img-64 {
+    width: 64px;
+    height: 64px;
+}
+.select2-selection__rendered{
+    width: auto!important;
+}
+.select2-container .select2-search--inline{
+    float: unset!important;
+}
+
+.select2-search__field{
+    height: 30px;
+}
+.ic-patient-details-warper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ic-patient-basic-info {
+    padding-left: 40px;
+}
+
+.ic-patient-basic-info h4 {
+    margin: 0px;
+    margin-bottom: 15px;
+}
+.ic-patient-basic-info h5,
+h6 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.ic-patient-profile-basic-info {
+    display: flex;
+}
+
+.ic-patient-details-info-warper {
+    margin-top: 40px;
+}
+
+.ic-patient-details-info-warper h5.text-muted {
+    margin-bottom: 15px;
+}
+.ic-patient-details-tab {
+    margin-bottom: 15px;
+}
+
+.ic-patient-profile-basic-info .ic-patient-adress-info {
+    padding-left: 40px;
+}
+
+.ic-profile-details-goback {
+    flex: 0 0 auto;
+}
+
+.ic-invoice-card-wraper {
+    min-height: 65vh;
+}
+.ic-bg-dashboard-card{
+    background-color: #28a9a8 !important;
+}
