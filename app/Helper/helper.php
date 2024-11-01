@@ -3,7 +3,9 @@
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -185,7 +187,7 @@ if (!function_exists('prefixGenerator')) {
      * @return string
      */
 
-    function prefixGenerator(Model $model, $prefix = 'IC-')
+    function prefixGenerator(Model $model, $prefix = 'ZHS-')
     {
         $countNumber = $model::count();
         return $prefix . sprintf('%06d', $countNumber + 1);

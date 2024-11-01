@@ -1,7 +1,26 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
+
+// backup and download database
+Route::get('zhs-db-download', function() {
+    \Artisan::call('app:database-backup');
+    $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
+    if (file_exists(storage_path() . "/app/backup/" . $filename)) :
+        //  download file and delete it
+        $gz_file = storage_path() . "/app/backup/" . $filename;
+        $gz_file_name = basename($gz_file);
+        header("Content-Type: application/gzip");
+        header("Content-Disposition: attachment; filename=$gz_file_name");
+        header("Content-Length: " . filesize($gz_file));
+        readfile($gz_file);
+        unlink($gz_file);
+    endif;
+
+    echo true;
+});
 Route::get('artisan/cache', function () {
     \Artisan::call('optimize:clear');
     \Artisan::call('config:cache');

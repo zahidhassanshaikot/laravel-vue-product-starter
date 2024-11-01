@@ -32,12 +32,12 @@ class PermissionSeeder extends Seeder
                 'List Role',
                 'Delete Role'
             ],
-            'Patient' => [
-                'Add Patient',
-                'Edit Patient',
-                'Show Patient',
-                'List Patient',
-                'Delete Patient'
+            'Student' => [
+                'Add Student',
+                'Edit Student',
+                'Show Student',
+                'List Student',
+                'Delete Student'
             ],
             'Settings' => [
                 'Site Settings'

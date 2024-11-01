@@ -8,22 +8,41 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Services\RoleService;
 use App\Services\UserService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Request;
+use Spatie\Permission\Middleware\PermissionMiddleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+
+
 
 class UserController extends Controller
 {
     protected $userServices;
-    protected $roleServices;
+    protected $roleService;
 
     public function __construct(UserService $userServices,RoleService $roleService)
     {
         $this->userServices = $userServices;
         $this->roleService = $roleService;
-
-        $this->middleware(['permission:List User'])->only(['index']);
-        $this->middleware(['permission:Add User'])->only(['create','store']);
-        $this->middleware(['permission:Edit User'])->only(['edit','update']);
-        $this->middleware(['permission:Delete User'])->only(['destroy']);
     }
+
+    /**
+     * Define middleware for the controller.
+     *
+     * @return array
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware(PermissionMiddleware::using('List User'), only: ['index']),
+            new Middleware(PermissionMiddleware::using('Add User'), only: ['create', 'store']),
+            new Middleware(PermissionMiddleware::using('Edit User'), only: ['edit', 'update']),
+            new Middleware(PermissionMiddleware::using('Delete User'), only: ['destroy']),
+            new Middleware(PermissionMiddleware::using('Restore User'), only: ['restore']),
+        ];
+    }
+
 
     public function index(UserDataTable $dataTable)
     {
@@ -37,7 +56,7 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function create()
+    public function create(): \Illuminate\View\View
     {
         $roles = $this->roleService->get();
 
@@ -45,7 +64,7 @@ class UserController extends Controller
         return view('admin.users.create', compact('roles'));
     }
 
-    public function store(UserRequest $request) // Use Request class
+    public function store(UserRequest $request) : \Illuminate\Http\RedirectResponse
     {
         try {
             $this->userServices->createOrUpdate($request);
@@ -58,14 +77,14 @@ class UserController extends Controller
         }
     }
 
-    public function edit(User $user)
+    public function edit(User $user) : \Illuminate\View\View
     {
         setPageMeta('Edit User');
         $roles = $this->roleService->get();
         return view('admin.users.edit', compact('user','roles'));
     }
 
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, $id): RedirectResponse
     {
         try {
             $this->userServices->createOrUpdate($request, $id);
@@ -78,7 +97,7 @@ class UserController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($id) : RedirectResponse
     {
         try {
             $this->userServices->deleteForceDeleteModel($id);
@@ -90,7 +109,7 @@ class UserController extends Controller
             return back();
         }
     }
-    public function bulk_destroy(Request $request)
+    public function bulk_destroy(Request $request) : RedirectResponse
     {
         try {
             $userIds = explode(",", $request->id);
@@ -107,7 +126,7 @@ class UserController extends Controller
             return back();
         }
     }
-    public function restore($id)
+    public function restore($id) : RedirectResponse
     {
         try {
             $this->userServices->restore($id);

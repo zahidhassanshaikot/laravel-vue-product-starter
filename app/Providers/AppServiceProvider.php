@@ -2,13 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use zahidhassanshaikot\Settings\Facades\Settings;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Cache;
-
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,8 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('Super Admin') ? true : null;
+        });
         $this->loadAndSetSettings();
     }
+
 
     private function loadAndSetSettings(): void
     {

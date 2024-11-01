@@ -9,6 +9,8 @@ use App\Models\PurchaseHistory;
 use App\Services\StudentService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\Middleware;
+use Spatie\Permission\Middleware\PermissionMiddleware;
 
 class StudentController extends Controller
 {
@@ -19,12 +21,22 @@ class StudentController extends Controller
         $this->studentService   = $studentService;
         $this->userService      = $userService;
 
-        $this->middleware(['permission:List Student'])->only(['index']);
-        $this->middleware(['permission:Add Student'])->only(['create','store']);
-        $this->middleware(['permission:Edit Student'])->only(['edit','update']);
-        $this->middleware(['permission:Delete Student'])->only(['destroy']);
-        $this->middleware(['permission:Restore Student'])->only(['restore']);
-        $this->middleware(['permission:Enroll Course'])->only(['enrollCourseByCash']);
+    }
+
+    /**
+     * Define middleware for the controller.
+     *
+     * @return array
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware(PermissionMiddleware::using('List Student'), only: ['index']),
+            new Middleware(PermissionMiddleware::using('Add Student'), only: ['create', 'store']),
+            new Middleware(PermissionMiddleware::using('Edit Student'), only: ['edit', 'update']),
+            new Middleware(PermissionMiddleware::using('Delete Student'), only: ['destroy']),
+            new Middleware(PermissionMiddleware::using('Restore Student'), only: ['restore']),
+        ];
     }
 
     public function index(StudentDataTable $dataTable)
