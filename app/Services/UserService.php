@@ -32,14 +32,15 @@ class UserService extends BaseService
                 $user->avatar = $this->fileUploadService->uploadFile($request,'avatar',User::FILE_STORE_PATH,$user->avatar);
             }
 
-            $user->name     = $data['name'];
-            $user->email    = $data['email'];
-            $user->phone    = $data['phone'];
+            $user->first_name       = $data['first_name'];
+            $user->last_name        = $data['last_name'];
+            $user->email            = $data['email'];
+            $user->phone            = $data['phone'];
             if(auth()->user()->id != $id){
-                $user->type     = $data['type'];
+                $user->type         = $data['type'];
             }
-            $user->status   = $data['status'];
-            $user->updated_by = Auth::id();
+            $user->status           = $data['status'];
+            $user->updated_by       = Auth::id();
 
             // Update user
             $user->save();

@@ -361,3 +361,33 @@ if (!function_exists('all_timezones')) {
         return $timezones ?? [];
     }
 }
+
+if (!function_exists('isActiveRoute')) {
+    /**
+     * isActiveRoute
+     *
+     * @return mixed
+     */
+
+    function isActiveRoute($parentRoute = false)
+    {
+        if (!$parentRoute) {
+            return '';
+        }
+
+        if(is_array($parentRoute)) {
+            foreach($parentRoute as $route) {
+                if(Route::is($route . '.index') || Route::is($route . '.create') || Route::is($route . '.edit')) {
+                    return 'mm-active';
+                }
+            }
+            return '';
+        } else {
+            $status = Route::is($parentRoute . '.index') || Route::is($parentRoute . '.create') || Route::is($parentRoute . '.edit');
+            if($status) {
+                return 'mm-active';
+            }
+            return '';
+        }
+    }
+}

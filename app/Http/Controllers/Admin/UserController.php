@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\DataTables\UserDataTable;
 use App\Http\Controllers\Controller;
@@ -8,7 +8,6 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Services\RoleService;
 use App\Services\UserService;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -30,7 +29,7 @@ class UserController extends Controller
     {
         setPageMeta('User List');
 
-        return $dataTable->render('users.index');
+        return $dataTable->render('admin.users.index');
     }
 
     /**
@@ -43,7 +42,7 @@ class UserController extends Controller
         $roles = $this->roleService->get();
 
         setPageMeta(__('Add User'));
-        return view('users.create', compact('roles'));
+        return view('admin.users.create', compact('roles'));
     }
 
     public function store(UserRequest $request) // Use Request class
@@ -63,7 +62,7 @@ class UserController extends Controller
     {
         setPageMeta('Edit User');
         $roles = $this->roleService->get();
-        return view('users.edit', compact('user','roles'));
+        return view('admin.users.edit', compact('user','roles'));
     }
 
     public function update(UserRequest $request, $id)
@@ -82,13 +81,42 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
-            $this->userServices->delete($id);
+            $this->userServices->deleteForceDeleteModel($id);
 
-            sendFlash('Successfully Deleted');
+            sendFlash(__('Successfully Deleted'));
             return back();
         } catch (\Exception $e) {
-            sendFlash($e->getMessage(), 'error');
+            sendFlash(__($e->getMessage()), 'error');
             return back();
         }
     }
+    public function bulk_destroy(Request $request)
+    {
+        try {
+            $userIds = explode(",", $request->id);
+            if (count($userIds) > 0) {
+                foreach ($userIds as $key => $userId) {
+                    $this->userServices->deleteForceDeleteModel($userId);
+                }
+
+            }
+            sendFlash(__('Successfully Deleted'));
+            return back();
+        } catch (\Exception $e) {
+            sendFlash(__($e->getMessage()), 'error');
+            return back();
+        }
+    }
+    public function restore($id)
+    {
+        try {
+            $this->userServices->restore($id);
+            sendFlash(__('Successfully Restored'));
+            return back();
+        } catch (\Exception $e) {
+            sendFlash(__($e->getMessage()), 'error');
+            return back();
+        }
+    }
+
 }

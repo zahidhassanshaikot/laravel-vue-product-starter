@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\RoleService;
 use App\Services\UserService;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -73,6 +72,6 @@ class DashboardController extends Controller
             'user_this_year'            => $user_this_year,
             'user_monthly_analytics'    => $userArr,
         ];
-        return view('dashboard', $data);
+        return view('admin.dashboard', $data);
     }
 }

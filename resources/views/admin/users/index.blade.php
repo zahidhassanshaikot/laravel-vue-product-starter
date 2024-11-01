@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
     <div class="card">
@@ -11,9 +11,9 @@
 @endsection
 
 @push('style')
-    @include('layouts.partials.datatableCss')
+    @include('admin.layouts.partials.datatableCss')
 @endpush
 @push('script')
-    @include('layouts.partials.dataTablejs')
+    @include('admin.layouts.partials.dataTablejs')
 
 @endpush

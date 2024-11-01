@@ -11,7 +11,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ getStorageImage(config('settings.site_favicon'),false,'favicon') }}">
 
-    @include('layouts.partials.styles')
+    @include('admin.layouts.partials.styles')
 </head>
 
 <body data-sidebar="dark">
@@ -20,10 +20,10 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        @include('layouts.partials.header')
+        @include('admin.layouts.partials.header')
 
         <!-- ========== Left Sidebar Start ========== -->
-        @include('layouts.partials.sidebar')
+        @include('admin.layouts.partials.sidebar')
         <!-- Left Sidebar End -->
 
         <!-- ============================================================== -->
@@ -35,7 +35,7 @@
                 <div class="container-fluid">
 
                     <!-- start page title -->
-                    @include('layouts.partials.breadcrumb')
+                    @include('admin.layouts.partials.breadcrumb')
                     <!-- end page title -->
 
 
@@ -46,7 +46,7 @@
             </div>
             <!-- End Page-content -->
 
-            @include('layouts.partials.footer')
+            @include('admin.layouts.partials.footer')
 
         </div>
         <!-- end main content-->
@@ -56,7 +56,7 @@
 </div>
 
 <!-- JAVASCRIPT -->
-@include('layouts.partials.scripts')
+@include('admin.layouts.partials.scripts')
 
 </body>
 </html>

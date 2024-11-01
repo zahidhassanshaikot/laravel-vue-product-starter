@@ -11,7 +11,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ storagelink(config('settings.site_favicon')) }}">
 
-    @include('layouts.partials.styles')
+    @include('admin.layouts.partials.styles')
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 </div>
 
 <!-- JAVASCRIPT -->
-@include('layouts.partials.scripts')
+@include('admin.layouts.partials.scripts')
 
 </body>
 </html>

@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
     public function create()
     {
         setPageMeta('Register');
-        return view('auth.register');
+        return view('admin.auth.register');
     }
 
     /**

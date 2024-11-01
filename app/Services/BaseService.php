@@ -108,6 +108,45 @@ class BaseService
         }
     }
 
+
+    /**
+     * delete
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function deleteSoftDeleteModel($id)
+    {
+        try {
+            $data = $this->model::withTrashed()->findOrFail($id);
+            if($data->trashed()){
+                return $data->forceDelete();
+            }else{
+                return $data->delete();
+            }
+        } catch (Throwable $th) {
+            throw $th;
+        }
+    }
+    public function deleteForceDeleteModel($id)
+    {
+        try {
+            $data = $this->model::withTrashed()->findOrFail($id);
+            return $data->forceDelete();
+        } catch (Throwable $th) {
+            throw $th;
+        }
+    }
+    public function restore($id)
+    {
+        try {
+            $data = $this->model::withTrashed()->findOrFail($id);
+            return $data->restore();
+        } catch (Throwable $th) {
+            throw $th;
+        }
+    }
+
     public function __call($name, $arguments)
     {
         $this->model->{$name}($arguments);

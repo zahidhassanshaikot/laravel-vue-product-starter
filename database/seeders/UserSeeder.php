@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $supperAdmin = User::updateOrCreate([
-            'name'                  => 'John Doe',
+            'first_name'            => 'John',
+            'last_name'            => 'Deo',
             'email'                 => 'admin@app.com',
             'phone'                 => '1234567890',
             'email_verified_at'     => now(),

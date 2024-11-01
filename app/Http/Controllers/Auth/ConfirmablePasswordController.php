@@ -18,7 +18,7 @@ class ConfirmablePasswordController extends Controller
     public function show()
     {
         setPageMeta('Confirm Password');
-        return view('auth.confirm-password');
+        return view('admin.auth.confirm-password');
     }
 
     /**

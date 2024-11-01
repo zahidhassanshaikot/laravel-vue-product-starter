@@ -1,0 +1,242 @@
+@extends('admin.layouts.app')
+
+@section('content')
+<div class="col-lg-12 p-0">
+    <div class="card">
+        <div class="card-body">
+            <form action="{{ route('students.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <h5 class="header-title">{{ __('Basic Info') }}</h5>
+                <div class="row">
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('First Name') }} <span class="error">*</span></label>
+                        <input type="text" name="first_name" class="form-control" placeholder="{{__('First Name')}}" required
+                            value="{{ old('first_name') }}">
+
+                        @error('first_name')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Last Name') }} <span class="error">*</span></label>
+                        <input type="text" name="last_name" class="form-control" placeholder="{{__('Last Name')}}" required
+                            value="{{ old('last_name') }}">
+
+                        @error('last_name')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Email') }} <span class="error">*</span></label>
+                        <input type="email" name="email" class="form-control" required placeholder="{{__('Enter email')}}"
+                            value="{{ old('email') }}">
+
+                        @error('email')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Phone') }}</label>
+                        <input type="tel" value="{{ old('phone') ? old('phone') : '+1' }}" name="phone"
+                            class="form-control phone">
+
+                        @error('phone')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Gender') }}</label>
+                        <select name="gender" class="form-control">
+                            <option {{ old('gender')=='1' ? 'selected' : '' }} value="1">{{__('Male')}}</option>
+                            <option {{ old('gender')=='0' ? 'selected' : '' }} value="0">{{__('Female')}}</option>
+                            <option {{ old('gender')=='2' ? 'selected' : '' }} value="2">{{__('Rather Not Say')}}</option>
+
+                        </select>
+
+                        @error('gender')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Password') }} <span class="error">*</span></label>
+                        <input type="password" name="password" class="form-control" required
+                            placeholder="{{__('Enter password')}}">
+
+                        @error('password')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Confirm Password') }} <span class="error">*</span></label>
+                        <input type="password" name="password_confirmation" class="form-control" required
+                            placeholder="{{__('Type password again')}}">
+
+                        @error('password_confirmation')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Avatar') }}</label>
+                        <small>({{ __('Image size max 300kb') }})</small>
+                        <div class="ic-form-group position-relative">
+                            <input type="file" id="uploadFile" class="f-input form-control" name="avatar" accept="image/*">
+                        </div>
+                        @error('avatar')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <div class="row">
+                            <label class="d-block mb-3 col-md-12">{{ __('Status') }} <span class="error">*</span></label>
+                            <div class="custom-control custom-radio custom-control-inline col-md-6">
+                                <input type="radio" id="status_yes" value="{{ \App\Models\User::STATUS_ACTIVE }}"
+                                       name="status" class="custom-control-input" checked="">
+                                <label class="custom-control-label" for="status_yes">{{ __('Active') }}</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline col-md-6">
+                                <input type="radio" id="status_no" value="{{ \App\Models\User::STATUS_INACTIVE }}"
+                                       name="status" class="custom-control-input">
+                                <label class="custom-control-label" for="status_no">{{ __('Inactive') }}</label>
+                            </div>
+                        </div>
+                        @error('status')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-12 col-lg-12 p-2">
+                        <label>{{ __('Bio') }} </label>
+                        <textarea name="about" class="form-control" rows="3">{{ old('bio') }}</textarea>
+
+                        @error('about')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <h5 class="header-title">{{ __('Address Info') }}</h5>
+                <div class="row">
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Country') }} </label>
+                        <input type="text" name="country" class="form-control" placeholder="{{__('Country')}}"
+                               value="{{ old('country') }}">
+
+                        @error('country')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('State') }} </label>
+                        <input type="text" name="state" class="form-control" placeholder="{{__('State')}}"
+                               value="{{ old('state') }}">
+
+                        @error('state')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('City') }} </label>
+                        <input type="text" name="city" class="form-control" placeholder="{{__('City')}}"
+                               value="{{ old('city') }}">
+
+                        @error('city')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Zip Code') }} </label>
+                        <input type="text" name="zip_code" class="form-control" placeholder="{{__('Zip Code')}}"
+                               value="{{ old('zip_code') }}">
+
+                        @error('zip_code')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-8 col-lg-6 p-2">
+                        <label>{{ __('Address') }} </label>
+                        <textarea name="address" class="form-control" placeholder="{{__('Address')}}">{{ old('address') }}</textarea>
+{{--                        <input type="text" name="address" class="form-control" placeholder="{{__('Address')}}"--}}
+{{--                            value="{{ old('address') }}">--}}
+
+                        @error('address')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <h5 class="header-title">{{ __('Social Info') }}</h5>
+                <div class="row">
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Facebook') }} </label>
+                        <input type="url" name="facebook" class="form-control" placeholder="{{__('Facebook')}}"
+                               value="{{ old('facebook') }}">
+
+                        @error('facebook')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Twitter') }} </label>
+                        <input type="url" name="twitter" class="form-control" placeholder="{{__('Twitter')}}"
+                               value="{{ old('twitter') }}">
+
+                        @error('twitter')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Linkedin') }} </label>
+                        <input type="url" name="linkedin" class="form-control" placeholder="{{__('Linkedin')}}"
+                               value="{{ old('linkedin') }}">
+
+                        @error('linkedin')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Instagram') }} </label>
+                        <input type="url" name="instagram" class="form-control" placeholder="{{__('Instagram')}}"
+                               value="{{ old('instagram') }}">
+
+                        @error('instagram')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Youtube') }} </label>
+                        <input type="url" name="youtube" class="form-control" placeholder="{{__('Youtube')}}"
+                               value="{{ old('youtube') }}">
+
+                        @error('youtube')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Website') }} </label>
+                        <input type="url" name="website" class="form-control" placeholder="{{__('Website')}}"
+                               value="{{ old('website') }}">
+
+                        @error('website')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <button class="btn btn-primary waves-effect waves-lightml-2 ic_mr-2" type="submit">
+                            <i class="fa fa-save"></i> {{ __('Submit') }}
+                        </button>
+                        <a class="btn btn-danger waves-effect" href="{{ route('students.index') }}">
+                            <i class="fa fa-times"></i> {{ __('Cancel') }}
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!-- end col -->
+@endsection
+
+@push('style')
+@endpush
+@push('script')
+@endpush

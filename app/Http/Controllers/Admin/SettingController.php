@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\SettingRequest;
 use App\Services\FileUploadService;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class SettingController extends Controller
     {
         checkPermission('Site Settings');
         setPageMeta(__('System Settings'));
-        return view('settings.index');
+        return view('admin.settings.index');
     }
 
     public function store(SettingRequest $request)

@@ -25,12 +25,13 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name'                  => ['required', 'string', 'max:100'],
+            'first_name'            => ['required', 'string', 'max:100'],
+            'last_name'             => ['required', 'string', 'max:100'],
             'email'                 => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
             'password'              => ['required', 'string', 'min:8', 'confirmed'],
             'password_confirmation' => ['required', 'string', 'min:8'],
             'phone'                 => ['nullable', 'max:25', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
-            'avatar'                => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:300'],
+            'avatar'                => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:1024'],
             'role'                  => 'required',
             'type'                  => 'required',
             'status'                => 'required'

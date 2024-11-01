@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\DataTables\RoleDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use App\Services\RoleService;
-use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -20,7 +19,7 @@ class RoleController extends Controller
     public function index(RoleDataTable $dataTable)
     {
         setPageMeta('Roles');
-        return $dataTable->render('roles.index');
+        return $dataTable->render('admin.roles.index');
     }
 
     public function create()
@@ -30,7 +29,7 @@ class RoleController extends Controller
 
         $permissions = $this->role_service->getPermissions();
 
-        return view('roles.create', compact('permissions'));
+        return view('admin.roles.create', compact('permissions'));
     }
 
     public function store(RoleRequest $request)
@@ -61,7 +60,7 @@ class RoleController extends Controller
             array_push($role_permission, $value->id);
             array_push($parents_id, $value->parent_id);
         }
-        return view('roles.edit', compact('parents_id', 'role', 'permissions', 'role_permission'));
+        return view('admin.roles.edit', compact('parents_id', 'role', 'permissions', 'role_permission'));
     }
 
     public function update(RoleRequest $request, $id)

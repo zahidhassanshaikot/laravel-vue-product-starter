@@ -16,7 +16,7 @@ class PasswordResetLinkController extends Controller
     public function create()
     {
         setPageMeta('Forgot Password');
-        return view('auth.forgot-password');
+        return view('admin.auth.forgot-password');
     }
 
     /**
