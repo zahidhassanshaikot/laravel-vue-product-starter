@@ -39,11 +39,13 @@ class StudentController extends Controller
         ];
     }
 
-    public function index(StudentDataTable $dataTable)
+    public function index(Request $request)
     {
+        $data = $request->all();
+        $dataTable = new StudentDataTable($data);
         setPageMeta(__('List Student'));
 
-        return $dataTable->render('admin.students.index');
+        return $dataTable->render('common.datatable');
     }
     public function create()
     {

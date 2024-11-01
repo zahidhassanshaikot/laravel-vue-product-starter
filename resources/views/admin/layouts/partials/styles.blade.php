@@ -17,3 +17,4 @@
 
 <link href="{{ asset('css/custom-dev.css') }}" rel="stylesheet" type="text/css">
 @stack('style')
+{{--@routes--}}

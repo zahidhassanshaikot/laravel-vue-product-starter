@@ -48,12 +48,12 @@ class StudentRequest extends FormRequest
             'address'               => ['nullable', 'string', 'max:190'],
             'zip_code'              => ['nullable', 'string', 'max:190'],
 
-//            'facebook'              => ['nullable', 'string', 'max:190'],
-//            'twitter'               => ['nullable', 'string', 'max:190'],
-//            'linkedin'              => ['nullable', 'string', 'max:190'],
-//            'instagram'             => ['nullable', 'string', 'max:190'],
-//            'youtube'               => ['nullable', 'string', 'max:190'],
-//            'website'               => ['nullable', 'string', 'max:190'],
+            'facebook'              => ['nullable', 'string', 'max:190'],
+            'twitter'               => ['nullable', 'string', 'max:190'],
+            'linkedin'              => ['nullable', 'string', 'max:190'],
+            'instagram'             => ['nullable', 'string', 'max:190'],
+            'youtube'               => ['nullable', 'string', 'max:190'],
+            'website'               => ['nullable', 'string', 'max:190'],
 
         ];
 

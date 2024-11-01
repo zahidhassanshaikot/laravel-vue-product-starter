@@ -1,3 +1,13 @@
+class BulkSelect {
+    getAllSelectedItems() {
+        let selectedData = [];
+        $(".ic-item-select-checkbox:checked").each(function () {
+            selectedData.push($(this).data("id"));
+        });
+        return selectedData;
+    }
+}
+
 !(function($) {
     "use strict";
 
@@ -164,36 +174,70 @@ function confirmShow(event, id, url) {
         }
     })
 }
-function makeDeleteBulkRequest(event, id, actionUrl) {
-    event.preventDefault();
-    const bulkSelect = new bulk_select();
 
-    if (bulkSelect.getAllSelectedItems()?.length > 0) {
+/**
+ * Handles the deletion of bulk items.
+ *
+ * @param {Event} event The event triggered by the action.
+ * @param {string} id The ID of the bulk action form.
+ * @param {string} actionUrl The URL where the delete action will be performed.
+ * @param serviceClass
+ */
+function makeDeleteBulkRequest(event, id, actionUrl, serviceClass = null, method_name = null) {
+    event.preventDefault();
+    const bulkSelect = new BulkSelect();
+    const selectedItems = bulkSelect.getAllSelectedItems();
+    var service = serviceClass;
+    var method_name = method_name;
+    if (selectedItems.length > 0) {
         Swal.fire({
-            title: 'Are you sure?',
+            title: "Are you sure?",
             text: "You won't be able to revert this!",
-            icon: 'warning',
+            icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                if ($("#delete-form-" + id).length > 0) {
-                    let form_id = $("#delete-form-" + id);
-                    form_id.attr("action", actionUrl);
-                    $(form_id).submit();
-                } else {
-                    let form_id = $("#delete-form-" + id);
-                    form_id.attr("action", actionUrl);
-                    $(form_id).submit();
+                const form_id = $("#delete-form-" + id);
+                form_id.attr("action", actionUrl);
+
+                if(service){
+                    // Create a new input element
+                    var newInput = document.createElement('input');
+                    var form = document.getElementById('delete-form-bulk-delete');
+
+                    // Set the input element's attributes
+                    newInput.type = 'hidden';
+                    newInput.name = 'service_class_namespace';
+                    newInput.value = service;
+
+                    // Append the new input element to the form
+                    form.appendChild(newInput);
                 }
+                if(method_name){
+                    // Create a new input element
+                    var newInput = document.createElement('input');
+                    var form = document.getElementById('delete-form-bulk-delete');
+
+                    // Set the input element's attributes
+                    newInput.type = 'hidden';
+                    newInput.name = 'method_name';
+                    newInput.value = method_name;
+
+                    // Append the new input element to the form
+                    form.appendChild(newInput);
+                }
+
+                form_id.submit();
             }
-        })
-    }else{
+        });
+    } else {
         toastr.info("Please select item");
     }
 }
+
 //tag input
 $(function () {
     $('.taginput')
@@ -271,4 +315,54 @@ const confirmationPopup =(event, id) =>{
             }
         }
     })
+}
+
+function changeBulkStatus(event, actionUrl, status, model = null) {
+    event.preventDefault();
+    const bulkSelect = new BulkSelect();
+    const selectedItems = bulkSelect.getAllSelectedItems();
+    if (selectedItems?.length > 0) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Change Status!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: "POST",
+                    url: actionUrl, // Replace with your backend route
+                    data: {
+                        model: model,
+                        items: selectedItems,
+                        status: status, // Replace with the new status
+                        _token: $('meta[name="csrf-token"]').attr("content"),
+                    },
+                    success: function (response) {
+                        // Handle success response
+                        const { status, message } = response;
+                        if (status) {
+                            toastr.success(message);
+                            location.reload();
+                        }
+                        // console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.error(xhr.responseText);
+                    },
+                });
+            }
+        });
+    } else {
+        toastr.info("Please select item");
+    }
+}
+
+function getStatus(event, actionUrl) {
+//     redirect to the url
+    window.location.href = actionUrl;
 }

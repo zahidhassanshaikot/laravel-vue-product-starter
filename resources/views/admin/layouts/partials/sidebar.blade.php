@@ -41,6 +41,24 @@
                     </li>
                 @endcan
 
+
+                @can('Company')
+                    <li class="{{ isActiveRoute('companies') }}">
+                        <a href="#" class="waves-effect">
+                            <i class="ti-user"></i>
+                            <span>{{ __('Companies') }}</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('Membership')
+                    <li class="{{ isActiveRoute('memberships') }}">
+                        <a href="#" class="waves-effect">
+                            <i class="ti-user"></i>
+                            <span>{{ __('Memberships') }}</span>
+                        </a>
+                    </li>
+                @endcan
+
                 @can('Settings')
                 <li class="menu-title">{{ __('Settings') }}</li>
                 <li>

@@ -7,6 +7,7 @@ use App\Traits\ModelBootHandler;
 use App\Traits\Scopes\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 //use Laravel\Sanctum\HasApiTokens;
@@ -15,7 +16,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles, ModelBootHandler, ScopeActive;
+    use HasFactory, Notifiable, HasRoles, ModelBootHandler, ScopeActive, SoftDeletes;
 
     const ADMIN                     = 'admin';
     public const STATUS_ACTIVE      = 'active';

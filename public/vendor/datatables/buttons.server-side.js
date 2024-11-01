@@ -266,6 +266,28 @@
         }
     };
 
+    DataTable.ext.buttons.delete = {
+        className: 'buttons-delete',
+
+        text: function (dt) {
+            let text = `<i class="fa fa-trash"></i> ${dt.i18n('buttons.delete', 'Delete')}
+                        <div class="d-none">
+                            <form method="post" id="delete-form-bulk-delete">
+                            <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').getAttribute('content')}" />
+                                <input id="bulk-delete-inout-ids" name="id" value=""/>
+                            </form>
+                        </div>
+                        `;
+
+            return text;
+        },
+
+        action: function (e, dt, button, config) {
+            // window.location = window.location.href.replace(/\/+$/, "") + '/create';
+            console.log("e:",e, "dt:", dt, "button:", button, "config:", config);
+        }
+    };
+
     if (typeof DataTable.ext.buttons.copyHtml5 !== 'undefined') {
         $.extend(DataTable.ext.buttons.copyHtml5, {
             text: function (dt) {

@@ -28,12 +28,12 @@ class CreateStudentProfilesTable extends Migration
             $table->string('licence_type',20)->nullable()->comment('passport,driving, medical, etc');
             $table->string('licence_number', '50')->nullable();
 
-//            $table->string('facebook')->nullable();
-//            $table->string('twitter')->nullable();
-//            $table->string('linkedin')->nullable();
-//            $table->string('instagram')->nullable();
-//            $table->string('youtube')->nullable();
-//            $table->string('website')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('website')->nullable();
 
 //            $table->foreignId('created_by')->nullable()->constrained('users', 'id')->onDelete('set null');
 //            $table->foreignId('updated_by')->nullable()->constrained('users', 'id')->onDelete('set null');

@@ -26,7 +26,7 @@ class StudentService extends BaseService
         $this->userService = $userService;
 
     }
-    public function createOrUpdate($request, $id = null)
+    public function createOrUpdate($request, int $id = null): mixed
     {
         $data           = $request->all();
         if ($id) {

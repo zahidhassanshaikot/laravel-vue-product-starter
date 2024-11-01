@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StudentProfile extends Model
 {
-    use HasFactory, ModelBootHandler, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     public const FILE_STORE_PATH    = 'students';
     protected $guarded = ['id'];

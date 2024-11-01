@@ -50,7 +50,7 @@ button.dt-button, div.dt-button, a.dt-button {
     border-radius: 30px !important;
     border: 0 !important;
     height: 30px;
-    width: 60px;
+    width: 80px;
     cursor: pointer;
 }
 .buttons-create {
@@ -60,7 +60,7 @@ button.dt-button, div.dt-button, a.dt-button {
     border-radius: 30px !important;
     border: 0 !important;
     height: 30px;
-    width: 60px;
+    width: 80px;
     cursor: pointer;
     padding: 0px !important;
 }
@@ -71,7 +71,7 @@ button.dt-button, div.dt-button, a.dt-button {
     border-radius: 30px !important;
     border: 0 !important;
     height: 30px;
-    width: 60px;
+    width: 80px;
     cursor: pointer;
 }
 .buttons-reload {
@@ -81,7 +81,7 @@ button.dt-button, div.dt-button, a.dt-button {
     border-radius: 30px !important;
     border: 0 !important;
     height: 30px;
-    width: 60px;
+    width: 80px;
     cursor: pointer;
     padding: 0px !important;
 }
@@ -92,7 +92,7 @@ button.dt-button, div.dt-button, a.dt-button {
     border-radius: 30px !important;
     border: 0 !important;
     height: 30px;
-    width: 60px;
+    width: 80px;
     cursor: pointer;
     padding: 0px !important;
 }
@@ -104,7 +104,7 @@ button.dt-button, div.dt-button, a.dt-button {
     border-radius: 30px !important;
     border: 0 !important;
     height: 30px;
-    width: 60px;
+    width: 80px;
     cursor: pointer;
 }
 
@@ -115,7 +115,7 @@ button.dt-button, div.dt-button, a.dt-button {
     border-radius: 30px !important;
     border: 0 !important;
     height: 30px;
-    width: 60px;
+    width: 80px;
     cursor: pointer;
     padding: 0px !important;
 }
@@ -127,7 +127,17 @@ button.dt-button, div.dt-button, a.dt-button {
     border-radius: 30px !important;
     border: 0 !important;
     height: 30px;
-    width: 60px;
+    width: 80px;
+    cursor: pointer;
+}
+.buttons-delete {
+    background-color: #d02a38 !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px #d02a38;
+    color: #fff !important;
+    border-radius: 30px !important;
+    border: 0 !important;
+    height: 30px;
+    width: 80px;
     cursor: pointer;
 }
 
@@ -149,7 +159,7 @@ End jquery datatable style
 }
 
 .ic-list-img {
-    width: 60px;
+    width: 80px;
     height: 60px;
     object-fit: cover;
 }

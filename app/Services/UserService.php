@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +16,7 @@ class UserService extends BaseService
         parent::__construct($model);
 //        $this->fileUploadService = $fileUploadService;
     }
-    public function createOrUpdate($request, $id = null)
+    public function createOrUpdate(Request|array $request, int $id = null): User
     {
         $data           = $request->all();
         if ($id) {

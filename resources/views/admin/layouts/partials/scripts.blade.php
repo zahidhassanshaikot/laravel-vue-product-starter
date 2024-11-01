@@ -18,6 +18,9 @@
 <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>
 <script src="{{ asset('js/custom-dev.js') }}"></script>
 
+<!-- Vite Integration -->
+{{--@vite('resources/js/app.js')--}}
+
 <script>
     toastr.options =
         {
@@ -46,3 +49,7 @@
 </script>
 
 @stack('script')
+
+
+<!-- Include Toggle Status Update -->
+@include('common.toggle-status-update')

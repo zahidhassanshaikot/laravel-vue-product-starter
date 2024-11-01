@@ -28,6 +28,7 @@ class StudentSeeder extends Seeder
             'last_name'             => 'student',
             'email'                 => 'student@app.com',
             'phone'                 => '1234567890',
+            'gender'                => 1,
             'email_verified_at'     => now(),
             'password'              => \Illuminate\Support\Facades\Hash::make('12345678'),
             'status'                => User::STATUS_ACTIVE,
@@ -36,13 +37,17 @@ class StudentSeeder extends Seeder
         ]);
 
         StudentProfile::create([
-            'user_id'       => $student->id,
-            'address'       => $faker->address(),
-            'city'          => $faker->city(),
-            'state'         => $faker->state(),
-            'country'       => $faker->country(),
-            'zip_code'      => $faker->postcode(),
-            'about'         => $faker->paragraph(),
+            'user_id'           => $student->id,
+            'address'           => $faker->address(),
+            'city'              => $faker->city(),
+            'state'             => $faker->state(),
+            'country'           => $faker->country(),
+            'zip_code'          => $faker->postcode(),
+            'about'             => $faker->paragraph(),
+            'dob'               => $faker->date(),
+            'medical_license'   => $faker->word(),
+            'licence_type'      => $faker->word(),
+            'licence_number'    => $faker->word(),
 
             'facebook'      => $faker->url(),
             'twitter'       => $faker->url(),
@@ -50,8 +55,8 @@ class StudentSeeder extends Seeder
             'instagram'     => $faker->url(),
             'youtube'       => $faker->url(),
             'website'       => $faker->url(),
-            'created_by'    => 1,
-            'updated_by'    => 1,
+//            'created_by'    => 1,
+//            'updated_by'    => 1,
         ]);
 
 

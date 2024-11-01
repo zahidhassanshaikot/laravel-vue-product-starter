@@ -30,6 +30,23 @@ if (!function_exists('formateDate')) {
 }
 
 
+if (!function_exists('toggleClass')) {
+    function toggleClass($disabled, $checked, $model, $column, $id, $route, $value, $altValue)
+    {
+        return '<input type="checkbox"' . $disabled . '
+                 class="toggle-status-update"
+                  id="' . $column . '_switch_' . $id . '"
+                 switch="none"' . $checked . '
+                 data-model="' . $model . '"
+                 data-column="' . $column . '"
+                 data-switch="success"
+                 data-id="' . $id . '"
+                 data-url="' . $route . '"
+                 data-value="' . $value . '"
+                 data-alt_value="' . $altValue . '
+                 "/><label class="' . ($disabled == 'disabled' ? "not-allowed" : "") . '" for="' . $column . '_switch_' . $id . '" ></label>';
+    }
+}
 
 if (!function_exists('formateDateFromCarbon')) {
     /**

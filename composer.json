@@ -11,7 +11,9 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "maatwebsite/excel": "*",
+        "rap2hpoutre/laravel-log-viewer": "^2.4",
         "spatie/laravel-permission": "^6.9",
+        "tightenco/ziggy": "^2.3",
         "yajra/laravel-datatables": "^11.0",
         "yajra/laravel-datatables-buttons": "^11.0",
         "zahidhassanshaikot/settings": "*"
