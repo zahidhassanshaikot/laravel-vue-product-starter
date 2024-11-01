@@ -1,0 +1,59 @@
+name: push-to-do-server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  automatic-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.2'
+      - uses: actions/checkout@v2
+      - name: Push to cpanel using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ${{ secrets.TARGET_FOLDER_PATH }}
+            git pull
+            php -r "file_exists('.env') || copy('.env.example', '.env');"
+            composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+            php artisan key:generate
+            php artisan view:cache
+            php artisan optimize:clear
+            chmod 775 -R ./storage
+
+#
+#name: 🚀 Deploy website on push to main
+#on:
+#  push:
+#    branches: [ main ]
+#jobs:
+#  build:
+#    name: Build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: executing remote ssh commands
+#        uses: appleboy/ssh-action@v0.1.10
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USERNAME }}
+#          key: ${{ secrets.SSH_PRIVATE_KEY }}
+#          port: ${{ secrets.PORT }}
+#          script: |
+#            cd ${{ secrets.TARGET_FOLDER_PATH }}
+#            ssh-add ~/.ssh/id_rsa
+#            git stash
+#            git pull
+#            composer install --optimize-autoloader --no-dev
+#            php artisan config:cache
+#            php artisan event:cache
+#            php artisan route:cache
+#            php artisan view:cache
+#            php artisan migrate

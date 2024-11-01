@@ -20,3 +20,10 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
+
+# /bootstrap/cache/*
+#/public/build
+error_log.log
+/public/error_log.log
+http.http
+
