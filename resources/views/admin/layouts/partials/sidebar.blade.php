@@ -15,25 +15,33 @@
                 </li>
 
                 <li class="menu-title">{{__("Main")}}</li>
-
-                <li class="{{( Route::is('roles.index') ||
-                        Route::is('roles.create') ||
-                        Route::is('roles.edit') ||
-                        Route::is('users.index') ||
-                        Route::is('users.create') ||
-                        Route::is('users.edit')) ? 'mm-active' : ''
-                    }}">
+                @canany(['User','Role'])
+                <li class="{{ isActiveRoute(['roles', 'users']) }}">
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fa fa-user-tie"></i>
                         <span>{{__('Administration')}}</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="{{ route('roles.index') }}" class="{{ (Route::is('roles.index') || Route::is('roles.create') || Route::is('roles.edit') )? 'active' : '' }}">{{__('Roles')}}</a></li>
-                        <li><a href="{{ route('users.index') }}" class="{{ (Route::is('users.index') || Route::is('users.create') || Route::is('users.edit')) ? 'active' : '' }}">{{__('Users')}}</a></li>
+                        <li class="{{ isActiveRoute('roles') }}">
+                            <a href="{{ route('roles.index') }}">{{ __('Roles') }}</a>
+                        </li>
+                        <li class="{{ isActiveRoute('users') }}">
+                            <a href="{{ route('users.index') }}">{{ __('Users') }}</a>
+                        </li>
                     </ul>
                 </li>
+                @endcanany
 
+                @can('Student')
+                    <li class="{{ isActiveRoute('students') }}">
+                        <a href="{{ route('students.index') }}" class="waves-effect">
+                            <i class="ti-user"></i>
+                            <span>{{ __('Students') }}</span>
+                        </a>
+                    </li>
+                @endcan
 
+                @can('Settings')
                 <li class="menu-title">{{ __('Settings') }}</li>
                 <li>
                     <a href="{{ route('settings.index') }}" class="waves-effect {{ Route::is('settings.index') ? 'active' : '' }}">
@@ -41,6 +49,7 @@
                         <span>{{__('Settings')}}</span>
                     </a>
                 </li>
+                @endcan
 
 
 {{--                <li>--}}

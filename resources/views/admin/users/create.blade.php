@@ -9,11 +9,20 @@
                 @csrf
                 <div class="row">
                     <div class="form-group col-xl-4 col-lg-6 p-2">
-                        <label>{{ __('Name') }} <span class="error">*</span></label>
-                        <input type="text" name="name" class="form-control" placeholder="Name" required
-                            value="{{ old('name') }}">
+                        <label>{{ __('First Name') }} <span class="error">*</span></label>
+                        <input type="text" name="first_name" class="form-control" placeholder="First Name" required
+                            value="{{ old('first_name') }}">
 
-                        @error('name')
+                        @error('first_name')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Last Name') }} <span class="error">*</span></label>
+                        <input type="text" name="last_name" class="form-control" placeholder="Last Name" required
+                               value="{{ old('last_name') }}">
+
+                        @error('last_name')
                         <p class="error">{{ $message }}</p>
                         @enderror
                     </div>

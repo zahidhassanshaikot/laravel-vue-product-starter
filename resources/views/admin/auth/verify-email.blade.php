@@ -47,7 +47,7 @@
                 </form>
 
                 <p class="mb-0">© {{ date('Y') }}
-                    {{ config('settings.site_title') }}. Crafted with <i class="mdi mdi-heart text-danger"></i> by ITclan BD</p>
+                    {{ config('settings.site_title') }}. Crafted with <i class="mdi mdi-heart text-danger"></i> by Zahid Hassan Shaikot</p>
             </div>
 
         </div>
