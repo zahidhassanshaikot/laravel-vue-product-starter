@@ -124,7 +124,8 @@ if (!function_exists('getStorageImage')) {
     function    getStorageImage($name, $is_user = false, $type ='default')
     {
         if ($name && Storage::disk(config('filesystems.default'))->exists($name)) {
-            return app('url')->asset('storage/' . $name);
+            return Storage::disk(config('filesystems.default'))->url($name);
+//            return app('url')->asset('storage/' . $name);
         }
         return $is_user ? getUserDefaultImage() : ($type == 'logo' ? getDefaultLogo() :($type == 'favicon'? getDefaultFavicon()  :($type == 'wide_logo' ? getDefaultWideLogo() : getDefaultImage())));
     }
