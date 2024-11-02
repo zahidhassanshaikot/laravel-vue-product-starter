@@ -81,9 +81,9 @@ if (!function_exists('storagelink')) {
             $defaultImage = config('settings.default_logo');
         }
 
-        // dd(Storage::disk('public')->exists($url));
+        // dd(Storage::disk(config('filesystems.default'))->exists($url));
 
-        if ($url && Storage::disk('public')->exists($url)) {
+        if ($url && Storage::disk(config('filesystems.default'))->exists($url)) {
             return Storage::url($url);
         } else {
             return Storage::url($defaultImage);
@@ -123,7 +123,7 @@ if (!function_exists('getStorageImage')) {
 
     function    getStorageImage($name, $is_user = false, $type ='default')
     {
-        if ($name && Storage::disk('public')->exists($name)) {
+        if ($name && Storage::disk(config('filesystems.default'))->exists($name)) {
             return app('url')->asset('storage/' . $name);
         }
         return $is_user ? getUserDefaultImage() : ($type == 'logo' ? getDefaultLogo() :($type == 'favicon'? getDefaultFavicon()  :($type == 'wide_logo' ? getDefaultWideLogo() : getDefaultImage())));
