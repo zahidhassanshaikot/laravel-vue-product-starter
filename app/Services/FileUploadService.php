@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Storage;
 
 class FileUploadService
 {
-    public function __construct($disk = 'public')
+    public function __construct($disk = null)
     {
-        $this->disk = $disk;
+        $this->disk = $disk ?? config('filesystems.default');
     }
 
     public function uploadBase64File(Request $request, $field_name = null, $upload_path = null, $delete_path = null)
