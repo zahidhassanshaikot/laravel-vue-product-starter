@@ -6,7 +6,8 @@
         <div class="card-body">
             <form action="{{ route('students.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <h5 class="header-title">{{ __('Basic Info') }}</h5>
+                <h4 class="header-title">{{ __('Basic Info') }}</h4>
+                <hr/>
                 <div class="row">
                     <div class="form-group col-xl-4 col-lg-6 p-2">
                         <label>{{ __('First Name') }} <span class="error">*</span></label>
@@ -54,6 +55,16 @@
                         </select>
 
                         @error('gender')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Date Of Birth') }} <span class="error">*</span></label>
+                        <input type="date" name="dob" class="form-control" placeholder="{{__('Date Of Birth')}}" required
+                               value="{{ old('dob') }}">
+
+                        @error('dob')
                         <p class="error">{{ $message }}</p>
                         @enderror
                     </div>
@@ -112,7 +123,52 @@
                         @enderror
                     </div>
                 </div>
-                <h5 class="header-title">{{ __('Address Info') }}</h5>
+
+
+                <h4 class="header-title">{{ __('License Info') }}</h4>
+                <hr/>
+                <div class="row">
+
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('Medical license') }} </label>
+                        <input type="text" name="medical_license" class="form-control" placeholder="{{__('Medical license')}}"
+                               value="{{ old('medical_license') }}">
+
+                        @error('medical_license')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('License Type') }} </label>
+                        <select name="license_type" class="form-control">
+                            <option {{ old('license_type')=='passport' ? 'selected' : '' }} value="passport">{{__('Passport')}}</option>
+                            <option {{ old('license_type')=='national_id' ? 'selected' : '' }} value="national_id">{{__('National ID')}}</option>
+                            <option {{ old('license_type')=='driving_license' ? 'selected' : '' }} value="driving_license">{{__('Driving License')}}</option>
+                            <option {{ old('license_type')=='other' ? 'selected' : '' }} value="other">{{__('Other')}}</option>
+                        </select>
+                        @error('license_type')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+
+                    </div>
+
+                    <div class="form-group col-xl-4 col-lg-6 p-2">
+                        <label>{{ __('License Number') }} </label>
+                        <input type="text" name="license_number" class="form-control" placeholder="{{__('License Number')}}"
+                               value="{{ old('license_number') }}">
+
+                        @error('license_number')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+
+                    </div>
+
+                </div>
+
+
+                <h4 class="header-title pt-2">{{ __('Address Info') }}</h4>
+                <hr/>
                 <div class="row">
                     <div class="form-group col-xl-4 col-lg-6 p-2">
                         <label>{{ __('Country') }} </label>
@@ -162,7 +218,8 @@
                     </div>
                 </div>
 
-                <h5 class="header-title">{{ __('Social Info') }}</h5>
+                <h4 class="header-title">{{ __('Social Info') }}</h4>
+                <hr/>
                 <div class="row">
                     <div class="form-group col-xl-4 col-lg-6 p-2">
                         <label>{{ __('Facebook') }} </label>

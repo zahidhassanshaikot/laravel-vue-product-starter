@@ -24,8 +24,8 @@ class StudentProfileFactory extends Factory
             'about'             => $this->faker->paragraph(),
             'dob'               => $this->faker->date(),
             'medical_license'   => $this->faker->word(),
-            'licence_type'      => $this->faker->word(),
-            'licence_number'    => $this->faker->word(),
+            'license_type'      => $this->faker->word(),
+            'license_number'    => $this->faker->word(),
 
         ];
     }

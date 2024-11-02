@@ -46,8 +46,8 @@ class StudentSeeder extends Seeder
             'about'             => $faker->paragraph(),
             'dob'               => $faker->date(),
             'medical_license'   => $faker->word(),
-            'licence_type'      => $faker->word(),
-            'licence_number'    => $faker->word(),
+            'license_type'      => $faker->word(),
+            'license_number'    => $faker->word(),
 
             'facebook'      => $faker->url(),
             'twitter'       => $faker->url(),

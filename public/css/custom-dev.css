@@ -43,6 +43,12 @@ div.dt-buttons {
 button.dt-button, div.dt-button, a.dt-button {
     background-image: none !important;
 }
+.dataTables_wrapper .dataTables_info {
+    /*//remove float_ left;*/
+    float: none !important;
+    /*padding-top: 0.55rem;*/
+    /*padding-right: .50rem;*/
+}
 .buttons-csv {
     background-color: #2ab9d0 !important;
     box-shadow: 0 5px 20px 0 rgba(0,0,0,0.2),0 13px 24px -11px rgba(233,30,99,0.6);

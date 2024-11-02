@@ -37,8 +37,8 @@ class StudentRequest extends FormRequest
 
             'dob'                   => ['nullable', 'date'],
             'medical_license'       => ['nullable', 'string', 'max:100'],
-            'licence_type'          => ['nullable', 'string', 'max:20'],
-            'licence_number'        => ['nullable', 'string', 'max:50'],
+            'license_type'          => ['nullable', 'string', 'max:20'],
+            'license_number'        => ['nullable', 'string', 'max:50'],
 
             'about'                 => ['nullable', 'string'],
 

@@ -25,8 +25,8 @@ class CreateStudentProfilesTable extends Migration
             $table->text('about')->nullable();
             $table->date('dob')->nullable();
             $table->string('medical_license',100)->nullable();
-            $table->string('licence_type',20)->nullable()->comment('passport,driving, medical, etc');
-            $table->string('licence_number', '50')->nullable();
+            $table->string('license_type',20)->nullable()->comment('passport,driving, medical, etc');
+            $table->string('license_number', '50')->nullable();
 
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
