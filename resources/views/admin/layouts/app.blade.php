@@ -10,13 +10,13 @@
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ getStorageImage(config('settings.site_favicon'),false,'favicon') }}">
-
+    @vite('resources/js/app.js')
     @include('admin.layouts.partials.styles')
 </head>
 
 <body data-sidebar="dark">
 
-<div id="app">
+<div>
     <!-- Begin page -->
     <div id="layout-wrapper">
 
@@ -29,7 +29,7 @@
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content">
+        <div id="vueApp" class="main-content">
 
             <div class="page-content">
                 <div class="container-fluid">

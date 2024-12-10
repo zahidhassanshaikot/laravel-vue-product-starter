@@ -16,5 +16,7 @@
 <link rel="stylesheet" href="{{ asset('libs/intl/build/css/intlTelInput.css') }}">
 
 <link href="{{ asset('css/custom-dev.css') }}" rel="stylesheet" type="text/css">
+
+
 @stack('style')
 {{--@routes--}}

@@ -1,6 +1,7 @@
 import "./bootstrap";
 import "../css/app.css";
 // import "laravel-datatables-vite";
+
 import { createApp } from "vue";
 import VueSweetalert2 from "vue-sweetalert2";
 import { ZiggyVue } from "ziggy";
@@ -33,4 +34,4 @@ Object.entries(import.meta.glob("./**/*.vue", { eager: true })).forEach(
 );
 
 app.use(VueSweetalert2);
-app.mount("#app");
+app.mount("#vueApp");
