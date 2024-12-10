@@ -28,8 +28,6 @@
         "bootstrap": "^5.3.3",
         "jquery": "^3.7.1",
         "laravel-vue-i18n": "^2.7.6",
-        "metismenu": "^3.0.7",
-        "metismenujs": "^1.4.0",
         "resumablejs": "^1.1.0",
         "uuid": "^9.0.1",
         "vue-flatpickr-component": "^11.0.5",
