@@ -1,6 +1,6 @@
 # IBPL
 
-Mentors-website-cms
+Startup project
 
 ## Description
 
@@ -10,10 +10,10 @@ This is a Laravel Vue.js project starter. It has some basic setup for your new p
 
 Before you begin, ensure you have met the following requirements:
 
--   [Node.js](https://nodejs.org/) installed v20 stable
+-   [Node.js](https://nodejs.org/) installed v22 stable
 -   [Composer](https://getcomposer.org/) installed v2.7.4
--   [PHP](https://www.php.net/) installed v^8.2
--   [Laravel](https://laravel.com/) v11
+-   [PHP](https://www.php.net/) installed v^8.3
+-   [Laravel](https://laravel.com/) v12
 -   [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) installed or br [Bun](https://bun.sh/docs/installation) Preferred to Bun
 
 ## Setup Instructions
@@ -105,4 +105,4 @@ Provide instructions on how to use your application here. Include any necessary 
 
 ## Authors of this repo
 
-### Regards  [Nuruzzaman](https://github.com/mentors-website-cms)
+### Regards  [Zahid Hassan Shaikot](https://github.com/zahidhassanshaikot/)
