@@ -1,6 +1,6 @@
 # IBPL
 
-LMS project
+Mentors-website-cms
 
 ## Description
 
@@ -105,4 +105,4 @@ Provide instructions on how to use your application here. Include any necessary 
 
 ## Authors of this repo
 
-### Regards  [Zahid Hassan Shaikot](https://github.com/zahidhassanshaikot/)
+### Regards  [Nuruzzaman](https://github.com/mentors-website-cms)
