@@ -1,4 +1,4 @@
-# IBPL
+# Laravel vue Project startup
 
 Startup project
 
@@ -23,13 +23,13 @@ To set up this project locally, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https:************************
+    git clone git@github.com:zahidhassanshaikot/laravel-vue-product-starter.git
     ```
 
 2. Navigate into the project directory:
 
     ```bash
-    cd nobin
+    cd laravel-vue-product-starter
     ```
 
 3. Install PHP dependencies using Composer:
@@ -80,7 +80,7 @@ To set up this project locally, follow these steps:
     ```
 
     ```bash
-    php artisan passport:client --personal --name="nobin"
+    php artisan passport:client --personal --name="laravel-vue-product-starter"
     ```
 
 10. Compile front-end assets:
@@ -106,3 +106,6 @@ Provide instructions on how to use your application here. Include any necessary 
 ## Authors of this repo
 
 ### Regards  [Zahid Hassan Shaikot](https://github.com/zahidhassanshaikot/)
+
+## Contributors
+[Zahid Hassan Shaikot](https://github.com/zahidhassanshaikot/), [A Awal Hadi](https://github.com/awalhadi)
