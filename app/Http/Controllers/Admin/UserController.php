@@ -67,8 +67,7 @@ class UserController extends Controller
     public function store(UserRequest $request) : \Illuminate\Http\RedirectResponse
     {
         try {
-            $this->userServices->createOrUpdate($request);
-
+            $user = $this->userServices->createOrUpdate($request);
             sendFlash('Successfully created user', 'success');
             return redirect()->route('users.index');
         } catch (\Exception $e) {

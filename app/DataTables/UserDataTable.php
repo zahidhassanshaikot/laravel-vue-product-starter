@@ -23,8 +23,7 @@ class UserDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->filterColumn('role', function ($query, $keyword) {
-            })
+            ->filterColumn('role', function ($query, $keyword) {})
             ->addColumn('action', function ($item) {
                 $buttons = '';
                 if (auth()->user()->can('Edit User')) {
@@ -34,7 +33,7 @@ class UserDataTable extends DataTable
                     $buttons .= '<form action="' . route('users.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post">
                     <input type="hidden" name="_token" value="' . csrf_token() . '">
                     <input type="hidden" name="_method" value="DELETE">
-                    <button class="dropdown-item text-danger delete-list-data" onclick="return makeDeleteRequest(event, ' . $item->id . ')" data-from-name="'. $item->name.'" data-from-id="' . $item->id . '"   type="button" title="Delete"><i class="mdi mdi-trash-can-outline"></i> ' . __('Delete') . '</button></form>
+                    <button class="dropdown-item text-danger delete-list-data" onclick="return makeDeleteRequest(event, ' . $item->id . ')" data-from-name="' . $item->name . '" data-from-id="' . $item->id . '"   type="button" title="Delete"><i class="mdi mdi-trash-can-outline"></i> ' . __('Delete') . '</button></form>
                     ';
                 }
 
@@ -43,25 +42,24 @@ class UserDataTable extends DataTable
                                 <i class="fas fa-ellipsis-v"></i>
                               </button>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              '. $buttons .'
+                              ' . $buttons . '
                               </ul>
                         </div>';
 
                 if (auth()->user()->can('Edit User')) {
                     $buttons .= '<a class="dropdown-item" href="' . route('users.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i>' . __('Edit') . '</a>';
                 }
-
             })->editColumn('role', function ($item) {
                 return implode(", ", $item->roles->pluck('name')->toArray()) ?? '';
             })->editColumn('avatar', function ($item) {
-                return '<img class="ic-list-img" src="' . getStorageImage($item->avatar,true) . '" alt="' . $item->name . '" />';
+                return '<img class="ic-list-img" src="' . getStorageImage($item->avatar, true) . '" alt="' . $item->name . '" />';
             })->editColumn('status', function ($item) {
                 $badge = $item->status == User::STATUS_ACTIVE ? "bg-success" : "bg-danger";
                 return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
             })
             ->editColumn('created_at', function ($role) {
                 return $role->created_at->format('d M Y h:i A');
-            })->rawColumns(['avatar', 'status','created_at', 'action'])->addIndexColumn();
+            })->rawColumns(['avatar', 'status', 'created_at', 'action'])->addIndexColumn();
     }
 
     /**
@@ -72,10 +70,15 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery()->whereHas('roles', function ($query) {
-            $query->whereNotNull('name');
-        })->with('roles');
-//            ->where('email', '<>', 'admin@admin.com');
+        $query = $model->newQuery()
+            ->whereHas('roles', function ($query) {
+                $query->whereNotNull('name');
+            })
+            ->with('roles');
+        if (request('order')[0]['column'] == 0) {
+            $query->orderBy('created_at', 'desc');
+        }
+        return $query;
     }
 
     /**
@@ -86,8 +89,6 @@ class UserDataTable extends DataTable
     public function html()
     {
         $params             = $this->getBuilderParameters();
-        $params['order']    = [[2, 'asc']];
-
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()

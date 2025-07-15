@@ -32,13 +32,6 @@ class PermissionSeeder extends Seeder
                 'List Role',
                 'Delete Role'
             ],
-            'Student' => [
-                'Add Student',
-                'Edit Student',
-                'Show Student',
-                'List Student',
-                'Delete Student'
-            ],
             'Settings' => [
                 'Site Settings'
             ]
