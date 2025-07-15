@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="header-title">{{ __('Add User') }}</h4>
-            <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data" class="ic_form">
                 @csrf
                 <div class="row">
                     <div class="form-group col-xl-4 col-lg-6 p-2">
@@ -102,17 +102,19 @@
                         @enderror
                     </div>
                     <div class="form-group col-xl-4 col-lg-6 p-2">
-                        <div class="row">
+                        <div class="">
                             <label class="d-block mb-3 col-md-12">{{ __('Status') }} <span class="error">*</span></label>
-                            <div class="custom-control custom-radio custom-control-inline col-md-6">
+                            <div class="ic-form-group d-flex align-items-center gap-3">
+                                <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="status_yes" value="{{ \App\Models\User::STATUS_ACTIVE }}"
-                                       name="status" class="custom-control-input" checked="">
+                                       name="status" class="custom-control-input me-1" checked="">
                                 <label class="custom-control-label" for="status_yes">{{ __('Active') }}</label>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline col-md-6">
+                            <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="status_no" value="{{ \App\Models\User::STATUS_INACTIVE }}"
-                                       name="status" class="custom-control-input">
+                                       name="status" class="custom-control-input me-1">
                                 <label class="custom-control-label" for="status_no">{{ __('Inactive') }}</label>
+                            </div>
                             </div>
                         </div>
 
@@ -123,14 +125,10 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div>
-                        <button class="btn btn-primary waves-effect waves-lightml-2" type="submit">
-                            <i class="fa fa-save"></i> {{ __('Submit') }}
-                        </button>
-                        <a class="btn btn-danger waves-effect" href="{{ route('users.index') }}">
-                            <i class="fa fa-times"></i> {{ __('Cancel') }}
-                        </a>
+                <div class="d-flex justify-content-end">
+                    <div class="right-button-group">
+                        <a href="{{ route('roles.index') }}" class="ic-button white">{{ __('Cancel') }}</a>
+                        <button type="submit" class="ic-button primary">{{ __('Submit') }}</button>
                     </div>
                 </div>
             </form>

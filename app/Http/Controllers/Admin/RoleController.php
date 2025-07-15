@@ -26,7 +26,6 @@ class RoleController extends Controller
     {
         checkPermission('Add Role');
         setPageMeta('Create Role');
-
         $permissions = $this->role_service->getPermissions();
 
         return view('admin.roles.create', compact('permissions'));

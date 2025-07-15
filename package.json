@@ -7,7 +7,6 @@
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
-        "@vitejs/plugin-legacy": "^6.0.0",
         "@vitejs/plugin-vue": "^5.0.0",
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.4",
@@ -17,6 +16,7 @@
         "postcss": "^8.4.47",
         "sass": "^1.75.0",
         "tailwindcss": "^3.4.13",
+        "terser": "^5.43.1",
         "unplugin-vue-components": "^0.26.0",
         "vite": "^5.0",
         "vue": "^3.4.0"
